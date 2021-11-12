@@ -1,4 +1,4 @@
-PROJECT := P01_Blinky
+PROJECT := P00_SWO
 
 STARTUP_FILE := ./Libs/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f411xe.s
 LINKER_SCRIPT := ./STM32F411VETX_FLASH.ld
@@ -11,13 +11,14 @@ LD := $(PREFIX)-gcc
 OBJCOPY := $(PREFIX)-objcopy
 
 SOURCES := $(STARTUP_FILE)
+INCLUDES :=
 
 include $(PROJECT)/Build.mk
 
 OBJS := $(patsubst %.c, %.o, $(filter %.c, $(SOURCES)))
 OBJS += $(patsubst %.s, %.o, $(filter %.s, $(SOURCES)))
 
-CPPFLAGS := -DDEBUG
+CPPFLAGS := -DDEBUG $(INCLUDES)
 ASFLAGS += -mcpu=cortex-m4 -mthumb -mfloat-abi=soft
 CFLAGS := -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -std=gnu11 -specs=nano.specs -g -O0 -nostartfiles
 LDFLAGS := -T "$(LINKER_SCRIPT)" -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -specs=nano.specs
