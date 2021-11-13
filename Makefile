@@ -11,7 +11,8 @@ LD := $(PREFIX)-gcc
 OBJCOPY := $(PREFIX)-objcopy
 
 SOURCES := $(STARTUP_FILE)
-INCLUDES :=
+INCLUDES := -I./Libs/CMSIS/Core/Include \
+			-I./Libs/CMSIS/Device/ST/STM32F4xx/Include
 
 include $(PROJECT)/Build.mk
 
