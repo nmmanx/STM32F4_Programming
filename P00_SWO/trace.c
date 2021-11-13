@@ -27,3 +27,10 @@ void ITM_Write(uint8_t byte, uint8_t port)
     
     ITM->PORT[port].u8 = byte;
 }
+
+void ITM_Trace(const char *msg, uint16_t len)
+{
+    for (uint16_t i = 0; i < len; ++i) {
+        ITM_Write((uint8_t)msg[i], TRACE_ITM_PORT);
+    }
+}
